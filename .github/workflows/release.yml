@@ -42,7 +42,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: electron-app-${{ matrix.os }}
-          path: out/electron-app-*-x64/
+          path: out/electron_app-*-x64/
   
   publish:
     needs: upload-artifacts
