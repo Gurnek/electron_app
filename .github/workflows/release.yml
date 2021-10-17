@@ -52,11 +52,6 @@ jobs:
     steps:
       - name: Download install files
         uses: actions/download-artifact@v2
-        with:
-          name: |
-            electron-app-windows-latest
-            electron-app-ubuntu-latest
-            electron-app-macos-latest
       
       - name: Zip up needed files
         run: |
