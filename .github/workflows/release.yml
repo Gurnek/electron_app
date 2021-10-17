@@ -56,11 +56,13 @@ jobs:
         
       - run: echo ${{ steps.download.outputs.download-path }}
         
+      - run: ls -R
+      
       - name: Zip up needed files
         run: |
-          zip -r windows.zip . -i electron-app-windows-latest/electron-app-win32-x64/
-          zip -r linux.zip . -i electron-app-ubuntu-latest/electron-app-linux-x64/
-          zip -r mac.zip . -i electron-app-macos-latest/electron-app-darwin-x64/
+          zip -r windows.zip . -i ${{ steps.download.outputs.download-path }}/electron-app-windows-latest/electron-app-win32-x64/
+          zip -r linux.zip . -i ${{ steps.download.outputs.download-path }}/electron-app-ubuntu-latest/electron-app-linux-x64/
+          zip -r mac.zip . -i ${{ steps.download.outputs.download-path }}/electron-app-macos-latest/electron-app-darwin-x64/
           
       - name: Create release
         uses: softprops/action-gh-release@v1
