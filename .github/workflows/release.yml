@@ -42,7 +42,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: electron-app-${{ matrix.os }}
-          path: out/*
+          path: out/electron-app-*-x64/
   
   publish:
     needs: upload-artifacts
@@ -53,6 +53,9 @@ jobs:
       - name: Download install files
         uses: actions/download-artifact@v2
       
+      - name: Show dir
+        run: ls
+        
       - name: Zip up needed files
         run: |
           zip -r windows.zip . -i electron-app-windows-latest/electron-app-win32-x64/
