@@ -51,10 +51,10 @@ jobs:
     
     steps:
       - name: Download install files
+        id: download
         uses: actions/download-artifact@v2
-      
-      - name: Show dir
-        run: ls
+        
+      - run: echo ${{ steps.download.outputs.download-path }}
         
       - name: Zip up needed files
         run: |
