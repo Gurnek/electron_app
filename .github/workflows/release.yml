@@ -68,3 +68,4 @@ jobs:
             windows.zip
             linux.zip
             mac.zip
+          tag_name: v1.0.0
