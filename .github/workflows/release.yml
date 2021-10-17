@@ -6,6 +6,10 @@ name: Release
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'The tag to associate to this release'
+        required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
