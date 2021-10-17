@@ -45,15 +45,14 @@ jobs:
     
     runs-on: ubuntu-latest
     
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    
     steps:
       - name: Download install files
         uses: actions/download-artifact@v2
         with:
-          name: electron-app-${{ matrix.os }}
+          name: |
+            electron-app-windows-latest
+            electron-app-ubuntu-latest
+            electron-app-macos-latest
       
       - name: Zip up needed files
         run: |
