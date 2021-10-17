@@ -39,3 +39,32 @@ jobs:
         with:
           name: electron-app-${{ matrix.os }}
           path: out/*
+  
+  publish:
+    needs: upload-artifacts
+    
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    
+    steps:
+      - name: Download install files
+        uses: actions/download-artifact@v2
+        with:
+          name: electron-app-${{ matrix.os }}
+      
+      - name: Zip up needed files
+        run: |
+          zip -r windows.zip electron-app-windows-latest/electron-app-win32-x64/
+          zip -r linux.zip electron-app-ubuntu-latest/electron-app-linux-x64/
+          zip -r mac.zip electron-app-macos-latest/electron-app-darwin-x64/
+          
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            windows.zip
+            linux.zip
+            mac.zip
