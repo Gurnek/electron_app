@@ -72,9 +72,9 @@ jobs:
       
       - name: Zip up needed files
         run: |
-          zip -r windows.zip . -i electron-app-windows-latest/electron-app-win32-x64/
-          zip -r linux.zip . -i electron-app-ubuntu-latest/electron-app-linux-x64/
-          zip -r mac.zip . -i electron-app-macos-latest/electron-app-darwin-x64/
+          zip -r windows.zip . -i electron-app-windows-latest/electron_app-win32-x64/
+          zip -r linux.zip . -i electron-app-ubuntu-latest/electron_app-linux-x64/
+          zip -r mac.zip . -i electron-app-macos-latest/electron_app-darwin-x64/
           
       - name: Create release
         uses: softprops/action-gh-release@v1
