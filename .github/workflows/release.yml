@@ -50,19 +50,31 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Download install files
-        id: download
+      - name: Download windows
+        id: download-windows
         uses: actions/download-artifact@v2
+        with:
+          name: electron-app-windows-latest
         
-      - run: echo ${{ steps.download.outputs.download-path }}
+      - name: Download mac
+        id: download-mac
+        uses: actions/download-artifact@v2
+        with:
+          name: electron-app-macos-latest
+          
+      - name: Download windows
+        id: download-linux
+        uses: actions/download-artifact@v2
+        with:
+          name: electron-app-ubuntu-latest
         
-      - run: ls -R
+      - run: ls -l
       
       - name: Zip up needed files
         run: |
-          zip -r windows.zip . -i ${{ steps.download.outputs.download-path }}/electron-app-windows-latest/electron-app-win32-x64/
-          zip -r linux.zip . -i ${{ steps.download.outputs.download-path }}/electron-app-ubuntu-latest/electron-app-linux-x64/
-          zip -r mac.zip . -i ${{ steps.download.outputs.download-path }}/electron-app-macos-latest/electron-app-darwin-x64/
+          zip -r windows.zip . -i electron-app-windows-latest/electron-app-win32-x64/
+          zip -r linux.zip . -i electron-app-ubuntu-latest/electron-app-linux-x64/
+          zip -r mac.zip . -i electron-app-macos-latest/electron-app-darwin-x64/
           
       - name: Create release
         uses: softprops/action-gh-release@v1
