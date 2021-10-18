@@ -68,7 +68,7 @@ jobs:
         with:
           name: electron-app-ubuntu-latest
         
-      - run: ls -l
+      - run: ls
       
       - name: Zip up needed files
         run: |
